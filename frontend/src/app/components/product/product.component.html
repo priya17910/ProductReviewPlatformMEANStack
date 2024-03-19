@@ -1,0 +1,160 @@
+<div class="container">
+
+    <a class="link-button" (click)="showAddFormFunction()">Add New Product</a>
+    <h2>Products</h2>
+
+    <!-- Search bar -->
+    <div class="search-bar">
+        <input type="text" [(ngModel)]="searchQuery" placeholder="Search by name">
+        <button (click)="applyFilter()" class="link-button-search">Search</button>
+        <button (click)="clearFilter()" class="link-button-clear">Clear</button>
+    </div>
+    <div class="search-bar">
+        <input type="text" [(ngModel)]="searchQueryCategory" placeholder="Search by category">
+        <button (click)="applyFilter()" class="link-button-search">Search</button>
+        <button (click)="clearFilterCategory()" class="link-button-clear">Clear</button>
+    </div>
+    <div *ngIf="displayedProductList.length > 0; else noProducts" class="table-container">
+        <table class="activity-table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Product Description</th>
+                    <th>Product Category</th>
+                    <th>Product Price</th>
+                    <th>Product Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of displayedProductList">
+                    <td>{{ product.productName }}</td>
+                    <td>{{ product.productDescription }}</td>
+                    <td>{{ product.productCategory }}</td>
+                    <td>{{ product.productPrice }}</td>
+                    <td><img src="{{product.productImageUrl}}" /></td>
+                    <td>
+                        <button class="btn" (click)="getProductById(product._id)">Get Product</button>
+                        <button class="btn" (click)="populateUpdateForm(product)"
+                            *ngIf="product.user === getUserId()">Update</button>
+                        <button class="btn delete-btn" (click)="confirmDelete(product._id)"
+                            *ngIf="product.user === getUserId()">Delete</button>
+                        <button class="btn" (click)="getReviews(product)">Get Reviews</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <ng-template #noProducts>
+        <div class="no-activities-container">
+            <p>No Products available</p>
+        </div>
+    </ng-template>
+    <div class="update-form-container" *ngIf="showAddForm && !showUpdateForm">
+        <button class="close-button" (click)="closeAddForm()">X</button>
+        <h2>Add Product</h2>
+        <form class="update-form" (ngSubmit)="createProduct()">
+            <div>
+                <label for="productName">Product Name:</label>
+                <input type="text" id="productName" name="productName" [(ngModel)]="productCreated.productName"
+                    required>
+            </div>
+            <div>
+                <label for="productDescription">Product Description:</label>
+                <input type="text" id="productDescription" name="productDescription"
+                    [(ngModel)]="productCreated.productDescription" required>
+            </div>
+            <div>
+                <label for="productCategory">Product Category:</label>
+                <input type="text" id="productCategory" name="productCategory"
+                    [(ngModel)]="productCreated.productCategory" required>
+            </div>
+            <div>
+                <label for="productPrice">Product Price:</label>
+                <input type="number" id="productPrice" name="productPrice" [(ngModel)]="productCreated.productPrice"
+                    required>
+            </div>
+            <div>
+                <label for="productImageUrl">Product Image Url:</label>
+                <input type="text" id="productImageUrl" name="v" [(ngModel)]="productCreated.productImageUrl" required>
+                <div *ngIf="productCreated && productCreated.productImageUrl"><img
+                        src="{{productCreated.productImageUrl}}" /></div>
+            </div>
+            <div>
+                <button type="submit">Add Product</button>
+                <button type="button" (click)="resetForm()">Clear</button>
+            </div>
+        </form>
+    </div>
+
+    <div *ngIf="showUpdateForm" class="update-form-container">
+        <button class="close-button" (click)="cancelUpdate()">X</button>
+        <h2>Update Product</h2>
+        <form class="update-form" (ngSubmit)="updateProduct(productUpdated._id)">
+            <div>
+                <label for="updateProductName">Product Name:</label>
+                <input type="text" id="updateProductName" name="updateProductName"
+                    [(ngModel)]="productUpdated.productName" required>
+            </div>
+            <div>
+                <label for="updateProductDescription">Product Description:</label>
+                <input type="text" id="updateProductDescription" name="updateProductDescription"
+                    [(ngModel)]="productUpdated.productDescription" required>
+            </div>
+            <div>
+                <label for="updateProductCategory">Product Category:</label>
+                <input type="text" id="updateProductCategory" name="updateProductCategory"
+                    [(ngModel)]="productUpdated.productCategory" required>
+            </div>
+            <div>
+                <label for="updateProductPrice">Steps:</label>
+                <input type="number" id="updateProductPrice" name="updateProductPrice"
+                    [(ngModel)]="productUpdated.productPrice" required>
+            </div>
+            <div>
+                <label for="updateProductImageUrl">Product Image Url:</label>
+                <input type="text" id="updateProductImageUrl" name="updateProductImageUrl"
+                    [(ngModel)]="productUpdated.productImageUrl" required>
+                <div><img src="{{productUpdated.productImageUrl}}" /></div>
+            </div>
+            <div>
+                <button type="submit">Update Product</button>
+                <button type="button" (click)="cancelUpdate()">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <div *ngIf="!showUpdateForm && productById._id" class="view-activity-container">
+        <button class="close-button" (click)="closeView()">X</button>
+        <h2>View Product</h2>
+        <form class="view-activity-form">
+            <div>
+                <label for="productName">Product Name:</label>
+                <input type="text" id="productName" name="productName" [(ngModel)]="productById.productName" readonly>
+            </div>
+            <div>
+                <label for="productDescription">Product Description:</label>
+                <input type="text" id="productDescription" name="productDescription"
+                    [(ngModel)]="productById.productDescription" readonly>
+            </div>
+            <div>
+                <label for="productCategory">Product Category:</label>
+                <input type="text" id="productCategory" name="productCategory" [(ngModel)]="productById.productCategory"
+                    readonly>
+            </div>
+            <div>
+                <label for="productPrice">Product Price:</label>
+                <input type="number" id="productPrice" name="productPrice" [(ngModel)]="productById.productPrice"
+                    readonly>
+            </div>
+            <div>
+                <label for="productImageUrl">Product Image:</label>
+                <div><img src="{{productById.productImageUrl}}" /></div>
+            </div>
+            <div>
+                <a href="/getAllProducts" class="link-button" (click)="closeView()">Get All Products</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+.star {
+  font-size: 24px;
+  cursor: pointer;
+  display: inline;
+}
+
+.filled {
+  color: gold;
+}
+
+.star.half-filled {
+  position: relative;
+}
+
+.star.half-filled::before {
+  content: '\2605';
+  color: gold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 50%;
+}

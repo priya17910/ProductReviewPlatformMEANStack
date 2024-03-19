@@ -1,0 +1,241 @@
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.search-bar {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.search-bar input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.activity-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.activity-table th,
+.activity-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.activity-table th {
+    background-color: #f0f0f0;
+}
+
+.update-form-container,
+.view-activity-container {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.update-form,
+.view-activity-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.update-form input,
+.view-activity-form input {
+    margin-bottom: 10px;
+}
+
+.btn {
+    padding: 8px 16px;
+    margin-right: 10px;
+    margin-bottom: 1.5vmax;
+    cursor: pointer;
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.link-button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #1b599a;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.link-button-search {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: green;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    margin-right: 1vmax;
+}
+
+.link-button-clear {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #dc3545;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+}
+
+.no-activities-container {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+}
+
+.no-activities-container p {
+    text-align: center;
+    margin: 0;
+}
+
+/* Update Activity */
+
+.update-form-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 3.7vmax;
+    border-radius: 5px;
+}
+
+.update-form-container h2 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.update-form-container .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 18px;
+    color: #555;
+    cursor: pointer;
+}
+
+.update-form-container .close-btn:hover {
+    color: #333;
+}
+
+.update-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.update-form input[type="text"],
+.update-form input[type="number"],
+.update-form input[type="date"] {
+    width: calc(100% - 12px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.update-form button[type="submit"],
+.update-form button[type="button"] {
+    width: 10%;
+    padding: 10px;
+    background-color: green;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.update-form button[type="button"] {
+    background-color: #dc3545;
+}
+
+/* View Activity */
+.view-activity-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    background-color: rgba(255, 255, 255, 1);
+    padding: 3.7vmax;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.view-activity-container h2 {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.view-activity-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.view-activity-form input[type="text"],
+.view-activity-form input[type="number"],
+.view-activity-form input[type="date"] {
+    width: calc(100% - 12px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.view-activity-form button[type="submit"],
+.view-activity-form a {
+    width: 10%;
+    padding: 10px;
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: #ccc;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    background-color: #aaa;
+}
+
+img {
+    border-radius: 50%;
+    width: 2.5vmax;
+    height: 2.5vmax;
+}
